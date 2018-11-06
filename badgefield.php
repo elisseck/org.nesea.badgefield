@@ -5,9 +5,9 @@ use CRM_Badgefield_ExtensionUtil as E;
 
 function badgefield_civicrm_post($op, $objectName, $objectId, &$objectRef) {
   if ($objectName == 'Participant' && ($op == 'create' || $op == 'edit')) {
-    $feeLevel = explode(' ', $params['fee_level'])[0];
+    $feeLevel = explode(' ', $objectRef->fee_level)[0];
     $membership = civicrm_api3('Membership', 'get', array(
-      'contact_id' => $params['contact_id'],
+      'contact_id' => $objectRef->contact_id,
       'status_id' => ['IN' => ["New", "Current", "Grace"]],
     ));
     if ($membership['count'] > 0) {
@@ -24,7 +24,7 @@ function badgefield_civicrm_post($op, $objectName, $objectId, &$objectRef) {
       $mem = '';
     }
     $role = '';
-    foreach ($params['role_id'] as $r) {
+    foreach ($objectRef->role_id as $r) {
       switch ($r) {
         case 21:
           $role .= ' B';
