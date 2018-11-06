@@ -24,7 +24,7 @@ function badgefield_civicrm_post($op, $objectName, $objectId, &$objectRef) {
       $mem = '';
     }
     $role = '';
-    foreach ($objectRef->role_id as $r) {
+    foreach (split(chr(1), $objectRef->role_id) as $r) {
       switch ($r) {
         case 21:
           $role .= ' B';
