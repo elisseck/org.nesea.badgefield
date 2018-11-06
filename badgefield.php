@@ -50,6 +50,10 @@ function badgefield_civicrm_post($op, $objectName, $objectId, &$objectRef) {
           $role .= ' W';
           break;
 
+        case 5:
+          $role .= ' E';
+          break;
+
         default:
           $role .= '';
           break;
